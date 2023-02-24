@@ -10,6 +10,7 @@ merged_df = pd.merge(portfolio_data, communication_history, on="Loan Number")
 st.title('Loan Customer Dashboard')
 st.subheader('The Data')
 
+
 st.write("*Portfolio_data.csv* -> Contains the loan portfolio of the customers. Columns include Loan Number, Due Date, State, DOB and Loan Amount.")
 st.write(portfolio_data.head(10))
 st.write("*CommunicationHistory.csv* -> Contains the communication history of the customers. Columns include Loan Number, Campaign ID, Status, Date and Time.")

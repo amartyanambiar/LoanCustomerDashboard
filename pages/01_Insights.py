@@ -132,8 +132,9 @@ if titles[7] in page:
 
 if titles[8] in page:
     st.subheader(titles[8])
-    customers_never_contacted = portfolio_data[~portfolio_data['Loan Number'].isin(
-        communication_history['Loan Number'].unique())]['Loan Number'].count()
+    loan_numbers = communication_history['Loan Number'].unique()
+    customers_never_contacted = portfolio_data[portfolio_data['Loan Number'].isin(
+        loan_numbers) == False]['Loan Number'].count()
     st.write("**"+str(customers_never_contacted) +
              '** Customers were never contacted')
     st.write('')

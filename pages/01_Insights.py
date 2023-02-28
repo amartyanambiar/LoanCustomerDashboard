@@ -6,6 +6,8 @@ portfolio_data = pd.read_csv('data/Portfolio_data.csv')
 communication_history = pd.read_csv('data/CommunicationHistory.csv')
 merged_df = pd.merge(portfolio_data, communication_history, on="Loan Number")
 
+portfolio_data["State"] = portfolio_data["State"].str.lower().str.capitalize()
+
 titles = ['1. Distribution of loans across different states', "2. Distribution of loans across different amounts", "3. Distribution of customers by age",
           "4. Distribution of loans by due dates", "5. Unique number of customers contacted on daily basis", "6. Number of customers not contacted on daily basis", "7. Who are the customers who have been contacted the most", "8. Who are the customers who have been contacted the least", "9. How many customers have never been reached out?", "10. Distribution of calls by states.", "11. Distribution of calls by campaign ids", "12. Unique number of customers by campaign ID"]
 st.title('Loan Customer Dashboard')
@@ -94,6 +96,7 @@ if titles[5] in page:
     completed_calls["Call Date"] = completed_calls["Call time"].dt.date
     unique_customers_contacted = completed_calls.groupby([completed_calls["Call Date"], "Loan Number"])[
         "Loan Number"].count().reset_index(name="Count")
+
     total_customers = len(communication_history["Loan Number"].unique())
 
     customers_not_contacted = {}

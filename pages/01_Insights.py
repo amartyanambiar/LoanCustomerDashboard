@@ -3,10 +3,11 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 portfolio_data = pd.read_csv('data/Portfolio_data.csv')
+
+portfolio_data["State"] = portfolio_data["State"].str.lower().str.capitalize()
 communication_history = pd.read_csv('data/CommunicationHistory.csv')
 merged_df = pd.merge(portfolio_data, communication_history, on="Loan Number")
 
-portfolio_data["State"] = portfolio_data["State"].str.lower().str.capitalize()
 
 titles = ['1. Distribution of loans across different states', "2. Distribution of loans across different amounts", "3. Distribution of customers by age",
           "4. Distribution of loans by due dates", "5. Unique number of customers contacted on daily basis", "6. Number of customers not contacted on daily basis", "7. Who are the customers who have been contacted the most", "8. Who are the customers who have been contacted the least", "9. How many customers have never been reached out?", "10. Distribution of calls by states.", "11. Distribution of calls by campaign ids", "12. Unique number of customers by campaign ID"]
@@ -146,8 +147,10 @@ if titles[8] in page:
 
 if titles[9] in page:
     st.subheader(titles[9])
-    st.bar_chart(
-        merged_df['State'].value_counts().sort_values(ascending=False))
+    calls_by_state = merged_df['State'].value_counts(
+    ).sort_values(ascending=False)
+    st.plotly_chart(px.bar(calls_by_state))
+
     st.write('- The highest number of calls are from the state of **Maharashtra**')
     st.write('')
 

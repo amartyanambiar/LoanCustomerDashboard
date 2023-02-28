@@ -21,7 +21,7 @@ col1, col2 = st.columns(2)
 with col1:
     st.write(completed_calls)
 with col2:
-    st.bar_chart(completed_calls.head(10))
+    st.plotly_chart(px.bar(completed_calls.head(10)))
 st.write('- **Maharashtra** has the highest number of completed calls')
 st.write('- **Madhya Pradesh** has the least number of completed calls')
 st.write("")
@@ -36,7 +36,8 @@ col1, col2 = st.columns(2)
 with col1:
     st.write(failed_calls)
 with col2:
-    st.bar_chart(failed_calls.head(10))
+    st.plotly_chart(px.bar(failed_calls.head(
+        5)))
 st.write('- Only **9 States** have failed calls')
 st.write('- **Maharashtra** has the highest number (5) of failed calls. Considering the high number of loans in Maharashtra, this is not a significant number')
 st.write('- **West Bengal** has the least number of failed calls')

@@ -26,8 +26,10 @@ if titles[0] in page:
     with col1:
         st.write(loans_by_state)
     with col2:
-        st.bar_chart(loans_by_state.head(
-            10))
+        fig = px.bar(loans_by_state.head(10),
+                     labels={'x': 'State', 'y': 'Number of Loans'},
+                     title=f'State Distribution')
+        st.plotly_chart(fig)
     st.write('- **Maharashtra** has the highest number of loans. Other states topping the list are **Tamil Nadu, Karnataka & Telangana**')
     st.write('- **Pondicherry, Mizoram, Madhya Pradesh, Chattisgarh, Haryana** has the least number of loans')
     st.write('- States in the South have the highest number of loans.')
@@ -49,7 +51,7 @@ if titles[2] in page:
     st.subheader(titles[2])
     portfolio_data['Age'] = pd.to_datetime(
         portfolio_data['DOB'], errors='coerce').dt.year
-    portfolio_data['Age'] = 2020 - portfolio_data['Age']
+    portfolio_data['Age'] = 2023 - portfolio_data['Age']
 
     fig = px.histogram(portfolio_data, x="Age", nbins=100,
                        title="Distribution of customers by age")

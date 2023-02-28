@@ -49,7 +49,7 @@ campaign_id = st.selectbox(
 campaign_id_df = merged_df[merged_df['Campaign ID'] == campaign_id]
 campaign_id_df['Age'] = pd.to_datetime(
     campaign_id_df['DOB'], errors='coerce').dt.year
-campaign_id_df['Age'] = 2020 - campaign_id_df['Age']
+campaign_id_df['Age'] = 2023 - campaign_id_df['Age']
 fig = px.histogram(campaign_id_df, x="Age", nbins=100,
                    title=f"Distribution of customers by age for Campaign ID {campaign_id}")
 fig.update_xaxes(title_text='Age')
@@ -77,7 +77,7 @@ st.write("")
 st.subheader("5. Loan Amount vs Age Analysis")
 merged_df['Age'] = pd.to_datetime(
     merged_df['DOB'], errors='coerce').dt.year
-merged_df['Age'] = 2020 - merged_df['Age']
+merged_df['Age'] = 2023 - merged_df['Age']
 fig = px.scatter(merged_df, x="Age", y="Loan Amount",
                  title="Loan Amount vs Age Analysis")
 fig.update_xaxes(title_text='Age')
